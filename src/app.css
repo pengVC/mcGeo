@@ -1,0 +1,47 @@
+ul {
+	margin-top: 0;
+}
+
+:global(.r-view-container) {
+	max-height: 10em;
+	overflow-y: auto;
+}
+
+:global(.c-area) {
+	width: 100%;
+	padding-bottom: 80%;
+}
+
+:global(.c-msg) {
+	padding: 10px 0 ;
+}
+
+.c-flow {
+
+	display: -webkit-flex;
+	display: flex;
+
+	font: 12px/1.8 "微软雅黑";
+}
+
+.c-flow-item {
+	flex: 1 1 50%;
+	padding: 5px;
+}
+
+@media ( max-width: 818px) {
+
+	.c-flow {
+		flex-direction: column;
+	}
+
+	.c-flow-item {
+		flex: 1 1 auto;
+		margin: 0 0 20px 0;
+		border-bottom: 1px solid #ccc;
+	}
+
+	.c-flow-item:last-of-type {
+		border: none;
+	}
+}
