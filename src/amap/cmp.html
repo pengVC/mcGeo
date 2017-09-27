@@ -1,0 +1,157 @@
+<div class="{{ ::app.className['c-flow'] }}">
+
+	<!-- 高德地图 -->
+	<div class="{{ ::app.className['c-flow-item'] }}"
+	     ng-controller="AMapCtrl as map">
+		<div id="aMap_ctx" class="c-area"></div>
+		<div class="c-msg">
+
+			<div ng-if="::map.isAMapReady">
+
+				<div>
+					<label>
+						<input type="radio" name="actionTypeAMap"
+						       ng-click="map.switchGeoAction(map.LOCATING_ACTION_TYPE.MANUAL)">
+						手动定位
+					</label>
+					<label>
+						<input type="radio" name="actionTypeAMap"
+						       ng-click="map.switchGeoAction(map.LOCATING_ACTION_TYPE.AUTO)">
+						自动定位
+					</label>
+				</div>
+
+				<div ng-if="map.actionType === map.LOCATING_ACTION_TYPE.MANUAL">
+					<button
+						ng-bind="map.isLocating? '定位..': '定位'"
+						ng-click="map.getCurrentPosition();">
+						定位
+					</button>
+				</div>
+
+				<div ng-if="map.actionType === map.LOCATING_ACTION_TYPE.AUTO">
+					<input type="text" ng-model="map.autoLocationSec"> 秒
+				</div>
+
+				<div>
+					-
+				</div>
+
+			</div>
+
+			<div>
+				动作: {{ map.actionState }}
+			</div>
+
+			<div>
+				定位的坐标: {{ map.locationInfo.coords  }}
+			</div>
+
+			<div>
+				定位精度: {{ map.locationInfo.accuracy }}
+			</div>
+
+			<div>
+				地点名称: {{ map.locationInfo.address }}
+			</div>
+
+			<div>
+				-
+			</div>
+
+			<div>
+				附近街道信息:
+				<ul class="r-view-container">
+					<li ng-repeat="roadItem in map.locationInfo.roadInfoArray">
+						{{ roadItem.name }}
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				附近 POI 信息:
+				<ul class="r-view-container">
+					<li ng-repeat="poiItem in map.locationInfo.posInfoArray">
+						{{ poiItem.name + ", " + poiItem.address }}
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- 百度地图 -->
+	<div class="{{ ::app.className['c-flow-item'] }}" ng-controller="BMapCtrl as map">
+		<div id="bMap_ctx" class="c-area"></div>
+
+		<div class="c-msg">
+
+			<div ng-if="::map.isAMapReady">
+
+				<div>
+					<label>
+						<input type="radio" name="actionTypeAMap"
+						       ng-click="map.switchGeoAction(map.LOCATING_ACTION_TYPE.MANUAL)">
+						手动定位
+					</label>
+					<label>
+						<input type="radio" name="actionTypeAMap"
+						       ng-click="map.switchGeoAction(map.LOCATING_ACTION_TYPE.AUTO)">
+						自动定位
+					</label>
+				</div>
+
+				<div ng-if="map.actionType === map.LOCATING_ACTION_TYPE.MANUAL">
+					<button
+						ng-bind="map.isLocating? '定位..': '定位'"
+						ng-click="map.getCurrentPosition();">
+						定位
+					</button>
+				</div>
+
+				<div ng-if="map.actionType === map.LOCATING_ACTION_TYPE.AUTO">
+					<input type="text" ng-model="map.autoLocationSec"> 秒
+				</div>
+
+				<div>
+					-
+				</div>
+
+			</div>
+
+			<div>
+				动作: {{ map.actionState }}
+			</div>
+
+			<div>
+				定位的坐标: {{ map.locationInfo.coords }}
+			</div>
+
+			<div>
+				定位精度: {{ map.locationInfo.accuracy }}
+			</div>
+
+			<div>
+				通过坐标获取的地点: {{ map.locationInfo.address }}
+			</div>
+
+			<div>
+				-
+			</div>
+
+			<div>
+				商圈信息:
+				<ul class="r-view-container">
+					<li ng-repeat="poiItem in map.locationInfo.posInfoArray">
+						{{ poiItem.title + ", " + poiItem.address }}
+					</li>
+				</ul>
+			</div>
+
+
+		</div>
+
+	</div>
+
+</div>
